@@ -1,13 +1,65 @@
-def checkio(data):
-	ans = ''
-	x = 0
-	Nums = [['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['X',10],['IX',9],['V',5],['IV',4],['I',1]]
-	while x < 11:
-		if data - Nums[x][1] >= 0:
-			data -= Nums[x][1]
-			ans += Nums[x][0]
-		else:
-			x += 1
-	return(ans)
+from string import ascii_lowercase
+alpha = []#list of all letters
+inc = []#list of increasing straights
+bawal = ['i','o','l']#list of forbidden characters
+pairs = []#list of pairs
+password = 'hepxxzaa'#password to be tested
+
+for letter in ascii_lowercase:
+	alpha.append(letter)
+
+for a in range(24):
+	inc.append(alpha[a]+alpha[a+1]+alpha[a+2])
 	
-checkio(1300)
+for a in alpha:
+	pairs.append(a+a)
+
+def iterate(input):
+	beg = input
+	output = ''
+	roll = True
+	while len(beg) > 0:
+		beg, end = beg[:-1], beg[-1]
+		if roll:
+			if end == 'z':
+				roll = True
+				output = 'a' + output
+			else:
+				roll = False
+				output = alpha[alpha.index(end)+1] + output
+		else:
+			output = end + output
+	return output	
+	
+def check(input):
+	score = 1
+	for a in pairs:
+		if a in input:
+			score += .5
+	for a in inc:
+		if a in input:
+			score += 1
+			break
+	for a in bawal:
+		if a in input:
+			score -= 5
+	return score
+
+#recursion depth exceeded
+'''
+def runner(password):
+	print(password, check(password))
+	if check(password) >= 3:
+		print(password)
+	else:
+		runner(iterate(password))
+runner(password)
+'''
+while True:
+	if check(password) >= 3:
+		print(password,check(password))
+		break
+	else:
+		password = iterate(password)
+		#print(password,check(password))
+
