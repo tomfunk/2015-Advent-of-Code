@@ -14,6 +14,15 @@ for a in range(24):
 for a in alpha:
 	pairs.append(a+a)
 
+for a in bawal:
+	alpha.remove(a)
+	for b in pairs:
+		if a in b:
+			pairs.remove(b)
+	for c in inc:
+		if a in c:
+			inc.remove(c)
+
 def iterate(input):
 	beg = input
 	output = ''
