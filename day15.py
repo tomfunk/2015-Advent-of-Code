@@ -23,6 +23,7 @@ for F in range(101):
 				dur = F * Frosting.durability + C * Candy.durability + B * Butterscotch.durability + S * Sugar.durability
 				fla = F * Frosting.flavor + C * Candy.flavor + B * Butterscotch.flavor + S * Sugar.flavor
 				tex = F * Frosting.texture + C * Candy.texture + B * Butterscotch.texture + S * Sugar.texture
+				cal = F * Frosting.calories + C * Candy.calories + B * Butterscotch.calories + S * Sugar.calories
 				
 				if cap < 0:
 					cap = 0
@@ -35,7 +36,7 @@ for F in range(101):
 				
 				score = cap * dur * fla * tex
 				
-				if score > max and (F+C+B+S) == 100:
+				if score > max and (F+C+B+S) == 100 and cal == 500:
 					max = score
 					print(F,C,B,S)
 					print(score)
