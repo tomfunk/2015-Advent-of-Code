@@ -26,7 +26,19 @@ class aunt(object):
 SuePrime = aunt(3,7,2,3,0,0,5,3,2,1)
 
 for sue in hoa:
-	#print(sue[1], sue[2], getattr(SuePrime, sue[1]))
-	if getattr(SuePrime, sue[1]) == int(sue[2]) and getattr(SuePrime, sue[3]) == int(sue[4]) and getattr(SuePrime, sue[5]) == int(sue[6]):
+	score = 0
+	for x in range(1,4):
+		y = x*2
+		if sue[y-1] == 'cats' or sue[y-1] == 'trees':
+			if getattr(SuePrime, sue[y-1]) < int(sue[y]):
+				score += 1
+		elif sue[y-1] == 'pomeranians' or sue[y-1] == 'goldfish':
+			if getattr(SuePrime, sue[y-1]) > int(sue[y]):
+				score += 1
+		else:
+			if getattr(SuePrime, sue[y-1]) == int(sue[y]):
+				score += 1
+		
+	if score == 3:
 		print(sue[0])
 
