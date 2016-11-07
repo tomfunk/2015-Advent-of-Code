@@ -6,5 +6,6 @@ for y in range(len(conts)):
 	for x in combinations(conts,y+1):
 		if sum(x) == 150:
 			total += 1
-
+	if total > 0:
+		break
 print(total)
