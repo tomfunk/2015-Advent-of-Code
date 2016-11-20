@@ -21,6 +21,9 @@ def factors(n):
 	
 while gifts < max:
 	houses += 1
-	gifts = 10 * sum(factors(houses))
+	gifts = 0
+	for factor in factors(houses):
+		if factor * 50 >= houses:
+			gifts += factor * 11
 
 print('House # %d gets %d gifts' % (houses, gifts))
